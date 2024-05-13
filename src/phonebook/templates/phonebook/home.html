@@ -53,7 +53,28 @@
       </div class="card-body">
       <h5 class="card-title">Телефоны</h5>
       <h6 class="card-subtite">Подтекст</h6>
-      <p class="card-text">Текст карточки</p>
+      <p class="card-text">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Names</th>
+              <th scope="col">Phones</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for persone in persones %}
+              <tr>
+                <th scope="row">{{ persone.pk }}</th>
+                <th scope="row">{{ persone.name }}</th>
+                <th scope="row">phones</th>
+                <th scope="row"> delete </th>
+              </tr>
+              {% endfor %}
+          </tbody>
+        </table>
+      </p>
       <div>
     </div>
 

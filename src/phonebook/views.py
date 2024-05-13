@@ -7,8 +7,10 @@ import phonebook
 class HomePageView(TemplateView):
     template_name = 'phonebook/home.html'
 
-    def get_context_data(self, **kwargs: reverse_lazy) -> dict[str, Any]:
-        return super().get_context_data(**kwargs)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["persones"] = models.Persone.objects.all()
+        return context
 
 class AddPhoneFormView(CreateView):
     template_name = 'phonebook/add_persone.html'
