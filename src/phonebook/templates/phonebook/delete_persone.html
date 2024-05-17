@@ -14,17 +14,17 @@
     <div class="container">
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Телефонная книга</a>
+          <a class="navbar-brand" href="#">Phone book</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'home' %}">На главную</a>
+                <a class="nav-link" aria-current="page" href="{% url 'home' %}">All</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'add' %}">Добавить</a>
+                <a class="nav-link active" href="{% url 'add' %}">Add</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -49,69 +49,13 @@
         </div>
       </nav>
 
-      <div class="card-body">
-        <h5 class="card-text">
-          <div class="row">
-            <div class="col-6">
-              <form action="" method="get">
-                <div class="form-group form-row">
-                  <div class="col-10">
-                    <input type="text" class="form-control" name="query" placeholder="Seaech by name">
-                    <input type="hidden" name="search_by" value="name">
-                  </div>
-                  <div class="col-2">
-                    <button type="submit" class="btn btn-success">поиск</button>
-                  </div>
-                </div>
-              </form>
-            </div>
-            <div class="col-6">
-              <form action="" method="get">
-                <div class="form-group form-row">
-                  <div class="col-10">
-                    <input type="text" class="form-control" name="query" placeholder="Search by phone">
-                    <input type="hidden" name="search_by" value="phone">
-                  </div>
-                  <div class="col-2">
-                    <button type="submit" class="btn btn-success">поиск</button>
-                  </div>
-                </div>
-              </form>
-            </div>
+      <h1>Вы уверены? Контакт {{ object.name }} будет удален!</h1>
 
-          </div>
-        </h5>
-      </div>
-
-      <div class="card">
-      </div class="card-body">
-      <h5 class="card-title">Телефоны</h5>
-      <h6 class="card-subtite">{{ search_message}}</h6>
-      <p class="card-text">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Names</th>
-              <th scope="col">Phones</th>
-              <th scope="col">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for persone in persones %}
-              <tr>
-                <th scope="row">{{ persone.pk }}</th>
-                <th>{{ persone.name }}</th>
-                <th>{{persone.all_phones_to_string}}</th>
-                <th><a href="{% url 'delete' persone.pk %}" class="btn btn-sm btn-danger">delete</a></th>
-              </tr>
-              {% endfor %}
-          </tbody>
-        </table>
-      </p>
-      <div>
-    </div>
-
+      <form action="" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" class="btn btn-danger">delete</button>
+      </form>
     </div>
 
     <!-- Optional JavaScript; choose one of the two! -->
